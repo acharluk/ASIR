@@ -3,6 +3,7 @@ services:
 
   acl_dns1:
     container_name: "acl_dns1"
+    hostname: "acl_dns1"
     image: "acharluk/dns1:latest"
     networks:
       sri-dns:
@@ -13,6 +14,7 @@ services:
   
   acl_dns2:
     container_name: "acl_dns2"
+    hostname: "acl_dns2"
     image: "acharluk/dns2:latest"
     networks: 
       sri-dns:
@@ -23,6 +25,7 @@ services:
 
   acl_cliente:
     container_name: "acl_cliente"
+    hostname: "acl_cliente"
     image: "acharluk/cliente:latest"
     networks:
       sri-dns:
