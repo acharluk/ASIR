@@ -1,0 +1,44 @@
+version: "3"
+services:
+
+  acl_dns1:
+    container_name: "acl_dns1"
+    image: "acharluk/dns1:latest"
+    networks:
+      sri-dns:
+        ipv4_address: 172.97.0.2
+    entrypoint: "/entrypoint.sh"
+    tty: true
+    stdin_open: true
+  
+  acl_dns2:
+    container_name: "acl_dns2"
+    image: "acharluk/dns2:latest"
+    networks: 
+      sri-dns:
+        ipv4_address: 172.97.0.3
+    entrypoint: "/entrypoint.sh"
+    tty: true
+    stdin_open: true
+
+  acl_cliente:
+    container_name: "acl_cliente"
+    image: "acharluk/cliente:latest"
+    networks:
+      sri-dns:
+        ipv4_address: 172.97.0.4
+    links:
+      - acl_dns1:acl_dns1
+      - acl_dns1:dns1
+      - acl_dns2:acl_dns2
+      - acl_dns2:dns2
+    entrypoint: "/bin/bash"
+    tty: true
+    stdin_open: true
+
+networks: 
+  sri-dns:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.97.0.0/16
