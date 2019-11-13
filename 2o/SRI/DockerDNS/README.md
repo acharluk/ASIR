@@ -1,3 +1,15 @@
+# Práctica DNS con Bind9 en Docker
+
+En esta práctica se crea el siguiente árbol DNS:
+
+![](arbol.png)
+
+Se pueden comprobar los nombres desde el contenedor `acl_cliente` con comandos como los siguientes:
+
+- `nslookup ftp.finanzas.miempresa06. dns1`
+
+- `nslookup jefe.personal.miempresa06. dns2`
+
 ### Contenedores
 
 - DNS 1: [acharluk/dns1:final](https://hub.docker.com/r/acharluk/dns1)
